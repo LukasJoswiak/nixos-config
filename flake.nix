@@ -66,6 +66,7 @@
         defaults = {
           dock = {
             autohide = true;
+            mru-spaces = false;
             orientation = "left";
             persistent-apps = [
               "/System/Applications/Calendar.app"
