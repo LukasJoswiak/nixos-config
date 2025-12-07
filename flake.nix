@@ -41,6 +41,7 @@
           "keepingyouawake"
           "ghostty"
           "programmer-dvorak"
+          "psst"
         ];
 
         # These app IDs are from using the mas CLI app
