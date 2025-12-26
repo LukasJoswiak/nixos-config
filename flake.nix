@@ -34,14 +34,17 @@
 
       homebrew = {
         enable = true;
+        onActivation.cleanup = "uninstall";
 
         brews = [];
         casks = [
           "1password"
           "keepingyouawake"
-          "ghostty"
+          "firefox"
+          "ghostty@tip"
           "programmer-dvorak"
           "psst"
+          "waterfox"
         ];
 
         # These app IDs are from using the mas CLI app
@@ -120,6 +123,8 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      nixpkgs.config.allowUnfree = true;
 
       security.pam.services.sudo_local.touchIdAuth = true;
     };

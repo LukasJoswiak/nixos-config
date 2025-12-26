@@ -3,6 +3,10 @@
 {
   home.stateVersion = "25.11";
 
+  home.packages = with pkgs; [
+    ansible
+  ];
+
   programs.zsh = {
     enable = true;
     history.save = 10000;
@@ -31,6 +35,10 @@
 
   programs.password-store.enable = true;
   programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry_mac;
+  };
 
   programs.vim = {
     enable = true;
@@ -145,5 +153,34 @@
   accounts.email = {
     maildirBasePath = "/Users/lukasjoswiak/Mail";
     accounts.lukas = email.accounts.lukas;
+  };
+
+  programs.firefox = {
+    enable = true;
+    package = null;
+    policies = {
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          default_area = "navbar";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = "true";
+        };
+        "{d634138d-c276-4fc8-924b-40a0ea21d284}" = {
+          default_area = "navbar";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/1password-x-password-manager/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "ipvfoo@pmarks.net" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ipvfoo/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = "false";
+        };
+      };
+    };
   };
 }
