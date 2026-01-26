@@ -44,6 +44,7 @@
           "ghostty@tip"
           "programmer-dvorak"
           "psst"
+          "utm"
           "waterfox"
         ];
 
