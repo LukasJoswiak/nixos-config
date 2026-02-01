@@ -39,6 +39,7 @@
         brews = [];
         casks = [
           "1password"
+          "karabiner-elements"
           "keepingyouawake"
           "kicad"
           "firefox"
@@ -104,6 +105,19 @@
             NSAutomaticSpellingCorrectionEnabled = false;
             ApplePressAndHoldEnabled = false;
             AppleICUForce24HourTime = true;
+          };
+          CustomUserPreferences = {
+            "com.apple.symbolichotkeys" = {
+              AppleSymbolicHotKeys = {
+                "118" = {
+                  enabled = true;
+                  value = {
+                    parameters = [65535 18 262144];
+                    type = "standard";
+                  };
+                };
+              };
+            };
           };
         };
       };
