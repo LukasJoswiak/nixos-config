@@ -107,6 +107,9 @@
   };
 
   targets.darwin.defaults = {
+    NSGlobalDomain = {
+      "com.apple.mouse.scaling" = 1.6;
+    };
     "com.apple.Safari" = {
       AutoFillPasswords = false;
       AutoFillCreditCardData = false;

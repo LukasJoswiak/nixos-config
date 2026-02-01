@@ -40,6 +40,7 @@
         casks = [
           "1password"
           "keepingyouawake"
+          "kicad"
           "firefox"
           "ghostty@tip"
           "programmer-dvorak"
@@ -84,7 +85,7 @@
             show-recents = false;
             # Hot corners
             wvous-tl-corner = 1;   # disabled
-            wvous-bl-corner = 1;   # disabled
+            wvous-bl-corner = 2;   # mission control
             wvous-tr-corner = 1;   # disabled
             wvous-br-corner = 13;  # lock screen
           };
