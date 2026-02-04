@@ -39,11 +39,14 @@
         brews = [];
         casks = [
           "1password"
+          # TODO: Add karabiner.json into nix
           "karabiner-elements"
           "keepingyouawake"
           "kicad"
           "firefox"
           "ghostty@tip"
+          "openscad@snapshot"
+          "orcaslicer"
           "programmer-dvorak"
           "psst"
           "utm"

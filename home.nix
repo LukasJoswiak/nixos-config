@@ -115,6 +115,7 @@
       AutoFillCreditCardData = false;
       AutoOpenSafeDownloads = false;
       IncludeDevelopMenu = true;
+      PrivateBrowsingRequiresAuthentication = false;
       ShowFullURLInSmartSearchField = true;
       ShowOverlayStatusBar = true;
       WebAutomaticSpellingCorrectionEnabled = false;
