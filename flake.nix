@@ -39,17 +39,19 @@
         brews = [];
         casks = [
           "1password"
+          "firefox"
+          "ghostty"
           # TODO: Add karabiner.json into nix
           "karabiner-elements"
           "keepingyouawake"
           "kicad"
-          "firefox"
-          "ghostty@tip"
+          "makemkv"
           "openscad@snapshot"
           "orcaslicer"
           "programmer-dvorak"
           "psst"
           "utm"
+          "vlc"
           "waterfox"
         ];
 
