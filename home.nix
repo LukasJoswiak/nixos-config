@@ -1,11 +1,39 @@
-{ config, lib, pkgs, age, sshConfig, email, ... }:
+{ config, lib, pkgs, age, sshConfig, email, resticRepositoryFile, resticPasswordCommand, ... }:
+let
+  resticBackupScript = pkgs.writeShellScript "restic-backup" ''
+    export RESTIC_REPOSITORY_FILE="${resticRepositoryFile}"
+    export RESTIC_PASSWORD_COMMAND="${resticPasswordCommand}"
 
+    if ! ping -c1 -W2 192.168.1.20 >/dev/null 2>&1; then
+      echo "NAS unreachable, skipping backup"
+      exit 0
+    fi
+
+    # Initialize the repo if it doesn't exist
+    if ! ${pkgs.restic}/bin/restic snapshots >/dev/null 2>&1; then
+      echo "Repository not initialized, running restic init..."
+      ${pkgs.restic}/bin/restic init
+    fi
+
+    ${pkgs.restic}/bin/restic backup \
+      "/Users/lukasjoswiak/Documents" \
+      "/Users/lukasjoswiak/dev" \
+      "/Users/lukasjoswiak/Mail" \
+      --tag daily
+
+    ${pkgs.restic}/bin/restic forget \
+      --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 75 \
+      --prune
+  '';
+in
 {
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
     ansible
+    restic
     tree
+    pulseview
   ];
 
   programs.zsh = {
@@ -31,7 +59,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {} // sshConfig.matchBlocks;
+    settings = {} // sshConfig.matchBlocks;
   };
 
   programs.password-store.enable = true;
@@ -91,6 +119,11 @@
       " Indent with 2 spaces in C files
       au FileType c setlocal shiftwidth=2 softtabstop=2 expandtab
     '';
+  };
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-nox;
   };
 
   programs.alacritty = {
@@ -186,6 +219,18 @@
           private_browsing = "false";
         };
       };
+    };
+  };
+
+  launchd.agents.restic-backup = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${resticBackupScript}" ];
+      # TODO: Run even if computer isn't awake at the scheduled time
+      StartCalendarInterval = [ { Hour = 21; Minute = 0; } ];
+      StandardOutPath = "${config.home.homeDirectory}/Library/Logs/restic-backup.log";
+      StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/restic-backup-error.log";
+
     };
   };
 }

@@ -36,20 +36,26 @@
         enable = true;
         onActivation.cleanup = "uninstall";
 
-        brews = [];
+        brews = [
+          "ffmpeg"
+        ];
         casks = [
           "1password"
+          "calibre"
           "firefox"
           "ghostty"
           # TODO: Add karabiner.json into nix
           "karabiner-elements"
           "keepingyouawake"
           "kicad"
+          "librewolf"
           "makemkv"
+          "mpv"
           "openscad@snapshot"
           "orcaslicer"
           "programmer-dvorak"
           "psst"
+          "transmission"
           "utm"
           "vlc"
           "waterfox"
@@ -64,6 +70,9 @@
         masApps = {
           "1blocker" = 1365531024;
           "1password_for_safari" = 1569813296;
+          "infuse" = 1136220934;
+          "numbers" = 361304891;
+          "things" = 904280696;
           "wireguard" = 1451685025;
         };
       };
@@ -148,6 +157,8 @@
       nixpkgs.config.allowUnfree = true;
 
       security.pam.services.sudo_local.touchIdAuth = true;
+
+      age.identityPaths = [ "/Users/lukasjoswiak/.ssh/id_ed25519" ];
     };
   in
   {
@@ -165,6 +176,8 @@
           home-manager.users.lukasjoswiak = import ./home.nix;
           home-manager.extraSpecialArgs = {
             age = config.age;
+            resticRepositoryFile = config.age.secrets."restic-repository".path;
+            resticPasswordCommand = config.restic.passwordCommand;
             email = config.email;
             sshConfig = config.sshConfig;
           };
