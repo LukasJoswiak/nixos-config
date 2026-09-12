@@ -59,7 +59,13 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    settings = {} // sshConfig.matchBlocks;
+    settings = {
+      "*" = {
+        SetEnv = {
+          TERM = "xterm-256color";
+        };
+      };
+    } // sshConfig.matchBlocks;
   };
 
   programs.password-store.enable = true;
