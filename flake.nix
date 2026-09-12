@@ -48,7 +48,7 @@
           "karabiner-elements"
           "keepingyouawake"
           "kicad"
-          "librewolf"
+          #"librewolf"
           "makemkv"
           "mpv"
           "openscad@snapshot"
@@ -73,6 +73,7 @@
           "infuse" = 1136220934;
           "numbers" = 361304891;
           "things" = 904280696;
+          "wblock" = 6746388723;
           "wireguard" = 1451685025;
         };
       };
