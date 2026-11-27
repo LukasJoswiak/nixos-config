@@ -34,7 +34,7 @@
 
       homebrew = {
         enable = true;
-        onActivation.cleanup = "uninstall";
+        # onActivation.cleanup = "uninstall";
 
         brews = [
           "ffmpeg"
@@ -47,14 +47,16 @@
           # TODO: Add karabiner.json into nix
           "karabiner-elements"
           "keepingyouawake"
-          "kicad"
+          #"kicad"
           #"librewolf"
-          "makemkv"
-          "mpv"
+          "llama-app"
+          #"makemkv"
+          "monitorcontrol"
+          #"mpv"
           "openscad@snapshot"
           "orcaslicer"
           "programmer-dvorak"
-          "psst"
+          #"psst"
           "transmission"
           "utm"
           "vlc"

@@ -31,6 +31,8 @@ in
 
   home.packages = with pkgs; [
     ansible
+    jujutsu
+    llama-cpp
     restic
     tree
     pulseview
