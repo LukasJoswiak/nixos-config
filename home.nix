@@ -140,11 +140,12 @@ in
 
   programs.ghostty = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.ghostty;
     settings = {
       font-feature = "-calt";
       cursor-style-blink = false;
       theme = "Argonaut";
+      font-family = "CommitMono";
     };
   };
 

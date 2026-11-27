@@ -32,6 +32,10 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [ git-remote-gcrypt ];
 
+      fonts.packages = with pkgs; [
+        commit-mono
+      ];
+
       homebrew = {
         enable = true;
         # onActivation.cleanup = "uninstall";
